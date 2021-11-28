@@ -14,4 +14,17 @@ new Vue({
   store,
   vuetify,
   render: h => h(App),
+
+  created() {
+    //Cargamos antes que nada los permisos
+    this.$store.dispatch('userModule/loadUser')
+      .then(resp => {
+        console.log("app created then loadUser STORE(vuex)");
+        console.log(resp);
+      })
+      .catch(resp => {
+        console.log("app created then loadUser STORE(vuex) Could not load ");
+      })
+  },
+
 }).$mount('#app')
